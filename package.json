@@ -1,0 +1,27 @@
+{
+  "name": "pkgtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "bin": "dist/app.js",
+  "scripts": {
+    "execute-worked": "npm run init-worked && npm run build && ./bin/pkgtest_binary",
+    "execute-not-worked": "npm run init-not-worked && npm run build && ./bin/pkgtest_binary",
+    "init-worked": "rm -rf node_modules && rm -rf bin && npm install -g pkg@4.4.9 && npm install && mkdir -p ./bin/sharp/build/ && mkdir -p ./bin/sharp/vendor/lib && cp -r ./node_modules/sharp/build/* ./bin/sharp/build/ && cp -r ./node_modules/sharp/vendor/* ./bin/sharp/vendor/ && cp -r ./node_modules/sharp/vendor/8.10.5/lib/* ./bin/sharp/vendor/lib",
+    "init-not-worked": "rm -rf node_modules && rm -rf bin && npm install -g pkg@4.5.1 && npm install && mkdir -p ./bin/sharp/build/ && mkdir -p ./bin/sharp/vendor/lib && cp -r ./node_modules/sharp/build/* ./bin/sharp/build/ && cp -r ./node_modules/sharp/vendor/* ./bin/sharp/vendor/ && cp -r ./node_modules/sharp/vendor/8.10.5/lib/* ./bin/sharp/vendor/lib",
+    "build": "tsc && pkg -t node13 -o bin/pkgtest_binary ."
+  },
+  "dependencies": {
+    "@types/sharp": "0.27.1",
+    "sharp": "0.27.1",
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "jest": "^26.5.2",
+    "ts-jest": "^26.4.1",
+    "ts-node": "^8.10.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
